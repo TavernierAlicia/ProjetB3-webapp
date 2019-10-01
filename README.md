@@ -1,2 +1,1 @@
-This is the first commit.
-Feel free to come back later !
+ is the first commit. Feel free to come back later !
