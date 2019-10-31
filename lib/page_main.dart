@@ -4,9 +4,7 @@ import 'package:projet_b3/pages/page_bars.dart';
 import 'package:projet_b3/pages/page_favorites.dart';
 
 class MainPage extends StatefulWidget {
-  MainPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  MainPage({Key key}) : super(key: key);
 
   @override
   _MainPageState createState() => _MainPageState();
