@@ -29,7 +29,7 @@ class _PageBarsState extends State<PageBars> {
       body: ListView.builder(
         itemCount: _bars.length,
         itemBuilder: (context, i) {
-          return barItem(_bars[i]);
+          return barItem(context, _bars[i]);
         },
       ),
     );

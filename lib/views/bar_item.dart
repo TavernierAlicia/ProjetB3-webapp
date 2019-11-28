@@ -1,34 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:projet_b3/model/Bar.dart';
+import 'package:projet_b3/pages/page_bar.dart';
 
-Widget  barItem(Bar item) {
-  return Card(
-    child: Row(
-      children: <Widget>[
-        Image.network(
-          item.imageUrl,
-          width: 100,
-          height: 50,
-        ),
-        Column(
+Widget  barItem(context, Bar item) {
+
+  var _width = MediaQuery.of(context).size.width ;
+
+  return new InkWell(
+    onTap: (() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => PageBar(bar: item))
+      );
+    }),
+    child: Card(
+      child: Padding(
+        padding: EdgeInsets.all(10.0),
+        child: Row(
           children: <Widget>[
-            Row(
-              children: <Widget>[
-                Text(item.name),
-              ],
+            Container(
+              child: Image.network(
+                item.imageUrl,
+                width: _width / 3,
+              ),
             ),
-            Row(
-              children: <Widget>[
-                Text(
-                  item.description,
-                  maxLines: 10,
-                ),
-              ],
-            ),
-            Text(item.note.toString() + " / 5")
+            Flexible(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      item.name,
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.all(10),),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text(item.description),
+                  )
+                ],
+              ),
+            )
           ],
         ),
-      ],
+      ),
     ),
   );
 }
