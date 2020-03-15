@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
-class PageBars extends StatefulWidget {
-  PageBars({Key key}) : super(key: key);
+class PageOrders extends StatefulWidget {
+  PageOrders({Key key}) : super(key: key);
 
   @override
-  _PageBarsState createState() => _PageBarsState();
+  _PageOrdersState createState() => _PageOrdersState();
 }
 
-class _PageBarsState extends State<PageBars> {
+class _PageOrdersState extends State<PageOrders> {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("Bars"),
+        title: Text("Orders"),
       ),
       body: new Center(
 
