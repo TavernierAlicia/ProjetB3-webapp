@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_b3/model/Product.dart';
+import 'package:projet_b3/model/product.dart';
 
 Widget productItem(context, Product item) {
   return Padding(

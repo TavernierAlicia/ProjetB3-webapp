@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:projet_b3/model/Bar.dart';
-import 'package:projet_b3/model/Product.dart';
+import 'package:projet_b3/model/bar.dart';
+import 'package:projet_b3/model/product.dart';
 import 'package:projet_b3/views/productItem.dart';
 
 class PageBar extends StatefulWidget {
