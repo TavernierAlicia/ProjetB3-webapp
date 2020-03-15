@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_b3/model/Bar.dart';
+import 'package:projet_b3/model/bar.dart';
 import 'package:projet_b3/views/bar_item.dart';
 
 class PageBars extends StatefulWidget {

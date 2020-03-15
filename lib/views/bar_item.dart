@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_b3/model/Bar.dart';
+import 'package:projet_b3/model/bar.dart';
 import 'package:projet_b3/pages/page_bar.dart';
 
 Widget  barItem(context, Bar item) {
