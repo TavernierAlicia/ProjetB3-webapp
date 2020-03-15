@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_b3/model/bar.dart';
 import 'package:projet_b3/model/product.dart';
-import 'package:projet_b3/views/productItem.dart';
+import 'package:projet_b3/views/product_item.dart';
 
 class PageBar extends StatefulWidget {
   PageBar({Key key, this.bar}) : super(key: key);
