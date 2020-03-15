@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:projet_b3/pages/page_account.dart';
-import 'package:projet_b3/pages/page_bars.dart';
+import 'package:projet_b3/old_pages/page_bars.dart';
 import 'package:projet_b3/pages/page_favorites.dart';
+import 'package:projet_b3/pages/page_orders.dart';
+import 'package:projet_b3/pages/page_settings.dart';
 
 class MainPage extends StatefulWidget {
   MainPage({Key key}) : super(key: key);
@@ -15,8 +16,9 @@ class _MainPageState extends State<MainPage> {
   int   _selectedPageIndex = 0 ;
   final _pagesList = [
     PageBars(),
+    PageOrders(),
     PageFavorites(),
-    PageAccount(),
+    PageSettings(),
   ] ;
 
   @override
@@ -34,7 +36,7 @@ class _MainPageState extends State<MainPage> {
       items: [
         _bottomNavigationBarItem(Icons.list, "Bars"),
         _bottomNavigationBarItem(Icons.favorite, "Favorites"),
-        _bottomNavigationBarItem(Icons.account_circle, "Account"),
+        _bottomNavigationBarItem(Icons.account_circle, "Settings"),
       ],
       onTap: ((index) { _switchPage(index); }),
     );
