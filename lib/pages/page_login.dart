@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_b3/colors.dart';
+import 'package:projet_b3/pages/page_main.dart';
 import 'package:projet_b3/user_data.dart';
 
 class PageLogin extends StatefulWidget {
@@ -51,7 +52,7 @@ class _PageLoginState extends State<PageLogin> {
       )
           : null,
       backgroundColor: ClickNDrinkColors.WHITE,
-      body: (!isUserLoggedIn) ? _loginBody() : _loginSuccessfulScreen(),
+      body: _loginBody(),
     );
   }
 
@@ -230,26 +231,9 @@ class _PageLoginState extends State<PageLogin> {
     setState(() {
       isUserLoggedIn = true;
     });
-/*    Future.delayed(const Duration(milliseconds: 3000), () {
-      Navigator.pushReplacementNamed(context, "page_main");
-    });
-
- */
-  }
-
-  Widget    _loginSuccessfulScreen() {
-    return Container(
-      color: ClickNDrinkColors.PRIMARY_COLOR,
-      width: _screenWidth,
-      child: Column(
-        children: <Widget>[
-          Icon(
-            Icons.check,
-            size: 50,
-            color: ClickNDrinkColors.WHITE,
-          )
-        ],
-      ),
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => MainPage()),
     );
   }
 }

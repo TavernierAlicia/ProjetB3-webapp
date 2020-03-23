@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projet_b3/pages/page_login.dart';
-import 'package:projet_b3/page_main.dart';
+import 'package:projet_b3/pages/page_main.dart';
 import 'package:projet_b3/user_data.dart';
 
 void main() => runApp(MyApp());
