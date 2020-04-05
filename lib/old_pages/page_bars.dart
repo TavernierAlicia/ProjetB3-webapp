@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:projet_b3/model/bar.dart';
-import 'package:projet_b3/views/bar_item.dart';
+import 'package:flutter_map/flutter_map.dart';
+import 'package:latlong/latlong.dart';
+import 'package:map_controller/map_controller.dart';
 
 class PageBars extends StatefulWidget {
   PageBars({Key key}) : super(key: key);
@@ -11,11 +14,25 @@ class PageBars extends StatefulWidget {
 
 class _PageBarsState extends State<PageBars> {
 
-  List _bars = [Bar];
+  MapController                                         _mapController ;
+  StatefulMapController                                 _statefulMapController ;
+  StreamSubscription<StatefulMapControllerStateChange>  _streamSubscription ;
 
   @override
   void initState() {
-    getBars();
+    /// Initializes the controllers
+    _mapController = MapController() ;
+    _statefulMapController = StatefulMapController(mapController: _mapController) ;
+
+    /// Wait for the controller to be ready before using it
+    _statefulMapController.onReady.then((_) => print("The map controller is ready"));
+
+    /// Listen to the change feed to rebuild the map on changes : this will
+    /// rebuild the map when, for example, addMarker or any method that mutates
+    /// the map assets is called
+    _streamSubscription = _statefulMapController.changeFeed.listen((changes) =>
+        setState(() {})
+    );
     super.initState();
   }
 
@@ -26,33 +43,37 @@ class _PageBarsState extends State<PageBars> {
         centerTitle: true,
         title: Text("Bars"),
       ),
-      body: ListView.builder(
-        itemCount: _bars.length,
-        itemBuilder: (context, i) {
-          return barItem(context, _bars[i]);
-        },
+      body: SafeArea(
+        child: Stack(
+          children: <Widget>[
+            FlutterMap(
+              mapController: _mapController,
+              options: MapOptions(
+                center: LatLng(48.853831, 2.348722),
+                zoom: 11.0
+              ),
+              layers: [
+                MarkerLayerOptions(
+                  markers: _statefulMapController.markers,
+                ),
+                PolylineLayerOptions(
+                  polylines: _statefulMapController.lines,
+                ),
+                PolygonLayerOptions(
+                  polygons: _statefulMapController.polygons,
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
 
-
-
-  /// This will get a list of bars near the user.
-  /// However, for testing purposes, we are actually creating a static array
-  /// containing placeholder data.
-  Future<Null> getBars() async {
-    /// TODO : Async call with await to an API
-    List newList = [
-      Bar("La bonne bouteille", "Bieres et vins en tout genre !", 2, "https://s2.qwant.com/thumbr/0x380/7/b/4f6a521d48836429d393cccec3f6bc2c380c40498f8942d404ed564ce6a458/05e391f1f33c310f7c1a833d99e23989.jpg?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F05%2Fe3%2F91%2F05e391f1f33c310f7c1a833d99e23989.jpg&q=0&b=1&p=0&a=1"),
-      Bar("La bonne biere", "Les meilleures bieres du monde", 4, "https://s2.qwant.com/thumbr/0x380/7/b/4f6a521d48836429d393cccec3f6bc2c380c40498f8942d404ed564ce6a458/05e391f1f33c310f7c1a833d99e23989.jpg?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F05%2Fe3%2F91%2F05e391f1f33c310f7c1a833d99e23989.jpg&q=0&b=1&p=0&a=1"),
-      Bar("Le cul de la boiteuse", "Ambiance grivoise et biere pas chere", 3, "https://s2.qwant.com/thumbr/0x380/7/b/4f6a521d48836429d393cccec3f6bc2c380c40498f8942d404ed564ce6a458/05e391f1f33c310f7c1a833d99e23989.jpg?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F05%2Fe3%2F91%2F05e391f1f33c310f7c1a833d99e23989.jpg&q=0&b=1&p=0&a=1"),
-      Bar("La Taverne de Blancherive", "Armure obligatoire", 2, "https://s2.qwant.com/thumbr/0x380/7/b/4f6a521d48836429d393cccec3f6bc2c380c40498f8942d404ed564ce6a458/05e391f1f33c310f7c1a833d99e23989.jpg?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F05%2Fe3%2F91%2F05e391f1f33c310f7c1a833d99e23989.jpg&q=0&b=1&p=0&a=1"),
-      Bar("Schlumpfi", "Saucisses, biere locale et insultes en allemand", 5, "https://s2.qwant.com/thumbr/0x380/7/b/4f6a521d48836429d393cccec3f6bc2c380c40498f8942d404ed564ce6a458/05e391f1f33c310f7c1a833d99e23989.jpg?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F05%2Fe3%2F91%2F05e391f1f33c310f7c1a833d99e23989.jpg&q=0&b=1&p=0&a=1"),
-    ] ;
-    if (newList.isNotEmpty) {
-      setState(() {
-        _bars = newList;
-      });
-    }
+  @override
+  void dispose() {
+    _streamSubscription.cancel();
+    super.dispose();
   }
+
 }
