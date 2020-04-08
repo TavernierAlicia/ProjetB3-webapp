@@ -49,6 +49,10 @@ flutter:
     - assets/facebook.png
     - assets/google.png
     - assets/instagram.png
+    - assets/search.png
+    - assets/orders.png
+    - assets/settings.png
+    - assets/location_pin.png
   #  - images/a_dot_burr.jpeg
   #  - images/a_dot_ham.jpeg
 
