@@ -34,18 +34,21 @@ class _MainPageState extends State<MainPage> {
     return BottomNavigationBar(
       currentIndex: _selectedPageIndex,
       items: [
-        _bottomNavigationBarItem(Icons.list, "Bars"),
-        _bottomNavigationBarItem(Icons.favorite, "Favorites"),
-        _bottomNavigationBarItem(Icons.account_circle, "Settings"),
+        _bottomNavigationBarItem('assets/settings.png', "Bars"),
+        _bottomNavigationBarItem('assets/orders.png', "Orders"),
+        _bottomNavigationBarItem('assets/settings.png', "Settings"),
       ],
       onTap: ((index) { _switchPage(index); }),
     );
   }
 
   /// Generate a BottomNavigationBarItem, given an IconData and a String.
-  BottomNavigationBarItem _bottomNavigationBarItem(IconData icon, String title) {
+  BottomNavigationBarItem _bottomNavigationBarItem(String imagePath, String title) {
     return BottomNavigationBarItem(
-      icon: Icon(icon),
+      icon: Image.asset(
+        imagePath,
+        scale: 1.5,
+      ),
       title: Text(title),
     );
   }
