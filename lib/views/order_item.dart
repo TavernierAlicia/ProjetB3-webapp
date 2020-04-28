@@ -51,7 +51,12 @@ Widget orderItem(context, Order order) {
                       color: Colors.grey
                     ),
                   ),
-                  Text(_createProductsList(order))
+                  Text(
+                    _createProductsList(order),
+                    style: TextStyle(
+                      fontSize: 16,
+                    ),
+                  )
                 ],
               ),
             ],
@@ -100,7 +105,7 @@ Widget orderItem(context, Order order) {
 }
 
 /// No need to create a nested ListView inside each item that would contain
-/// the products list, it would be a waste of resources.
+/// the products list, it would be a waste of resources (memory).
 /// Instead, we create a static string containing the quantity and the product
 /// name on each line.
 String  _createProductsList(Order order) {
@@ -108,7 +113,7 @@ String  _createProductsList(Order order) {
 
   order.products.forEach((orderItem) {
     if (result.isNotEmpty)
-      result += "\n";
+      result += ",\n";
     result += "${orderItem.quantity} ${orderItem.name}";
   });
   return (result);

@@ -48,7 +48,9 @@ flutter:
   assets:
     - assets/logging_in.gif
     - assets/facebook.png
+    - assets/favorites.png
     - assets/google.png
+    - assets/home.png
     - assets/instagram.png
     - assets/search.png
     - assets/orders.png

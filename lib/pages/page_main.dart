@@ -34,9 +34,10 @@ class _MainPageState extends State<MainPage> {
     return BottomNavigationBar(
       currentIndex: _selectedPageIndex,
       items: [
-        _bottomNavigationBarItem('assets/settings.png', "Bars"),
-        _bottomNavigationBarItem('assets/orders.png', "Orders"),
-        _bottomNavigationBarItem('assets/settings.png', "Settings"),
+        _bottomNavigationBarItem('assets/home.png', "Bars"),
+        _bottomNavigationBarItem('assets/orders.png', "Commandes"),
+        _bottomNavigationBarItem('assets/favorites.png', "Favoris"),
+        _bottomNavigationBarItem('assets/settings.png', "Parametres"),
       ],
       onTap: ((index) { _switchPage(index); }),
     );
@@ -49,7 +50,7 @@ class _MainPageState extends State<MainPage> {
         imagePath,
         scale: 1.5,
       ),
-      title: Text(title),
+      title: Text(""),
     );
   }
 

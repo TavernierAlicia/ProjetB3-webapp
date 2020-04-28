@@ -40,6 +40,7 @@ class _PageLoginState extends State<PageLogin> {
     _screenWidth = MediaQuery.of(context).size.width ;
 
     return Scaffold(
+      resizeToAvoidBottomPadding: false,
       appBar: (!isUserLoggedIn)
           ? AppBar(
         backgroundColor: Colors.white,

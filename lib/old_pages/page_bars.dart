@@ -113,6 +113,11 @@ class _PageBarsState extends State<PageBars> {
   /// button.
   void            _performSearch() {
     print("Should perform search about ${_searchBarController.text}");
+    Scaffold.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Feature not implemented yet."),
+      )
+    );
     // TODO
   }
 
