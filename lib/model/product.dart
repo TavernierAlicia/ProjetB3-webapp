@@ -1,15 +1,18 @@
 class Product {
 
-  Product(String name, String description, double price, bool available) {
+  Product(String name, String description, double price, bool available,
+      {int quantity = 1}) {
     this.name = name ;
     this.description = description ;
     this.price = price ;
     this.available = available ;
+    this.quantity = quantity;
   }
 
   String  name ;
   String  description ;
   double  price ;
   bool    available ;
+  int     quantity;
 
 }
