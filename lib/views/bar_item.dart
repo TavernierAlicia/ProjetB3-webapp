@@ -1,51 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:projet_b3/model/bar.dart';
 import 'package:projet_b3/old_pages/page_bar.dart';
+import 'package:projet_b3/old_pages/page_favorites.dart';
 
-Widget  barItem(context, Bar item) {
+Widget  barItem(context, Bar item, int index, bool isDismissible,
+    onItemDismissed) {
 
-  var _width = MediaQuery.of(context).size.width ;
-
-  return new InkWell(
-    onTap: (() {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => PageBar(bar: item))
-      );
-    }),
+  return Dismissible(
+    key: Key("test"),
+    onDismissed: (direction) {
+      onItemDismissed(index);
+    },
+    background: Container(
+      child: Image.asset(
+        "assets/delete.png",
+        scale: 0.5,
+      ),
+    ),
     child: Card(
-      child: Padding(
-        padding: EdgeInsets.all(10.0),
-        child: Row(
-          children: <Widget>[
-            Container(
-              child: Image.network(
-                item.imageUrl,
-                width: _width / 3,
-              ),
-            ),
-            Flexible(
-              child: Column(
+      elevation: 10,
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10)
+      ),
+      child: Column(
+        children: <Widget>[
+          Image.network(item.imageUrl),
+          Row(
+            children: <Widget>[
+              Icon(Icons.ac_unit),
+              Column(
                 children: <Widget>[
-                  Container(
-                    alignment: Alignment.center,
-                    child: Text(
-                      item.name,
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold
-                      ),
-                    ),
-                  ),
-                  Padding(padding: EdgeInsets.all(10),),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    child: Text(item.description),
-                  )
+                  Text(item.name)
                 ],
-              ),
-            )
-          ],
-        ),
+              )
+            ],
+          )
+        ],
       ),
     ),
   );
