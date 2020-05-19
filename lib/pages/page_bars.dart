@@ -24,7 +24,7 @@ class _PageBarsState extends State<PageBars> {
   ];
 
   List         _barTypes = [
-    Filter('Tous', false),
+    Filter('Tous', true),
     Filter('Bar a vins', false),
     Filter('Tapas', false),
     Filter('Rhum', false),
@@ -35,8 +35,21 @@ class _PageBarsState extends State<PageBars> {
     Filter('Whiskey', false),
   ];
 
+  List        _barPopularity = [
+    Filter('Tous', true),
+    Filter('Nouveaute', false),
+    Filter('Les plus likes', false),
+  ];
+
+  List        _barDistance = [
+    Filter("Proches", true),
+    Filter("Tous", false),
+  ];
+
   // TODO : No need to create a list
   List<Filter>  _filtersSelectedType = [] ;
+  List<Filter>  _filtersSelectedPopularity = [] ;
+  List<Filter>  _filtersSelectedDistance = [] ;
 
   List<Marker>  _markers = [];
 
@@ -108,6 +121,14 @@ class _PageBarsState extends State<PageBars> {
                                     fontWeight: FontWeight.bold
                                 ),
                               ),
+                              _filtersBarPopularity(dialogSetState),
+                              Text(
+                                "Distance".toUpperCase(),
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold
+                                ),
+                              ),
+                              _filtersBarDistance(dialogSetState),
                             ],
                           ),
                         ),
@@ -126,7 +147,6 @@ class _PageBarsState extends State<PageBars> {
   }
 
   Widget          _filtersBarType(dialogSetState) {
-
     return GridView.count(
       padding: EdgeInsets.only(top: 15, bottom: 15),
       crossAxisCount: 3,    // Number of columns
@@ -143,6 +163,50 @@ class _PageBarsState extends State<PageBars> {
             });
           }),
           child: filterItem(type, _filtersSelectedType.contains(type)),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget          _filtersBarPopularity(dialogSetState) {
+    return GridView.count(
+      padding: EdgeInsets.only(top: 15, bottom: 15, left: 50, right: 50),
+      crossAxisCount: 1,    // Number of columns
+      crossAxisSpacing: 4,  // Space between lines
+      mainAxisSpacing: 4,   // Space between columns
+      childAspectRatio: 9,
+      shrinkWrap: true,
+      children: _barPopularity.map((popularity) {
+        return GestureDetector(
+          onTap: (() {
+            _filtersSelectedPopularity.clear();
+            dialogSetState(() {
+              _filtersSelectedPopularity.add(popularity);
+            });
+          }),
+          child: filterItem(popularity, _filtersSelectedPopularity.contains(popularity)),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget          _filtersBarDistance(dialogSetState) {
+    return GridView.count(
+      padding: EdgeInsets.only(top: 15, bottom: 15),
+      crossAxisCount: 2,    // Number of columns
+      crossAxisSpacing: 20,  // Space between lines
+      mainAxisSpacing: 4,   // Space between columns
+      childAspectRatio: 5,
+      shrinkWrap: true,
+      children: _barDistance.map((distance) {
+        return GestureDetector(
+          onTap: (() {
+            _filtersSelectedDistance.clear();
+            dialogSetState(() {
+              _filtersSelectedDistance.add(distance);
+            });
+          }),
+          child: filterItem(distance, _filtersSelectedDistance.contains(distance)),
         );
       }).toList(),
     );
