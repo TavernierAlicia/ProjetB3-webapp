@@ -105,7 +105,6 @@ class _PageBarsState extends State<PageBars> {
                       content: SingleChildScrollView(
                         child: Container(
                           width: double.maxFinite,
-                          height: double.maxFinite,
                           child: Wrap(
                             children: <Widget>[
                               Text(
