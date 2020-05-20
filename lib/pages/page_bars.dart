@@ -3,6 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import 'package:projet_b3/model/bar.dart';
 import 'package:projet_b3/model/filter.dart';
+import 'package:projet_b3/old_pages/page_bar.dart';
 import 'package:projet_b3/views/filter_item.dart';
 
 class PageBars extends StatefulWidget {
@@ -16,6 +17,7 @@ class _PageBarsState extends State<PageBars> {
 
   final         _searchBarController = TextEditingController() ;
 
+  // TODO : Test purposes only ; replace with a Future that retrieve bars.
   List         _barsList = [
     Bar("TestName0", "TestDescription0", 4, "", LatLng(48.8557579, 2.3753418)),
     Bar("TestName1", "TestDescription1", 4, "", LatLng(43.8557579, 2.3753418)),
@@ -311,6 +313,7 @@ class _PageBarsState extends State<PageBars> {
             ),
             onTap: (() {
               print("Clicked on ${bar.name}");
+              _showBarPreview(bar);
               setState(() {
                 // FIXME : Does not seems to work...
                 _mapCenter = bar.coordinates ;
@@ -323,6 +326,64 @@ class _PageBarsState extends State<PageBars> {
     });
 
     return result ;
+  }
+
+  void          _showBarPreview(Bar bar) {
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          content: Wrap(
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Image.network(bar.imageUrl),
+                  Column(
+                    children: <Widget>[
+                      Text(bar.name),
+                      // TODO : Category
+                      // TODO : Open hours
+                    ],
+                  )
+                ],
+              ),
+              GestureDetector(
+                onTap: (() {
+                  print("Clicked !");
+                  Navigator.of(context).pop();
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => PageBar(bar: bar),
+                    ),
+                  );
+                }),
+                child: Container(
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                    color: Colors.deepOrange,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(30),
+                    )
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      "Acceder a la carte",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      }
+    );
   }
 
 }
