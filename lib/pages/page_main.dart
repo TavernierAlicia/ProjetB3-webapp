@@ -48,7 +48,7 @@ class _MainPageState extends State<MainPage> {
     return BottomNavigationBarItem(
       icon: Image.asset(
         imagePath,
-        scale: 1.5,
+        scale: 1.1,
       ),
       title: Text(""),
     );

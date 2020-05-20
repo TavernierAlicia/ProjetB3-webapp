@@ -3,7 +3,7 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong/latlong.dart';
 import 'package:projet_b3/model/bar.dart';
 import 'package:projet_b3/model/filter.dart';
-import 'package:projet_b3/old_pages/page_bar.dart';
+import 'package:projet_b3/pages/page_bar.dart';
 import 'package:projet_b3/views/filter_item.dart';
 
 class PageBars extends StatefulWidget {
