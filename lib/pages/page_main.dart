@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_b3/old_pages/page_bars.dart';
+import 'package:projet_b3/pages/page_bars.dart';
 import 'package:projet_b3/pages/page_favorites.dart';
 import 'package:projet_b3/pages/page_orders.dart';
 import 'package:projet_b3/pages/page_settings.dart';
