@@ -46,7 +46,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-    - assets/logging_in.gif
+    - assets/add.png
     - assets/facebook.png
     - assets/favorites.png
     - assets/filters.png
@@ -54,8 +54,10 @@ flutter:
     - assets/home.png
     - assets/instagram.png
     - assets/location_pin.png
+    - assets/logging_in.gif
     - assets/orders.png
     - assets/recenter.png
+    - assets/remove.png
     - assets/search.png
     - assets/settings.png
   #  - images/a_dot_burr.jpeg
