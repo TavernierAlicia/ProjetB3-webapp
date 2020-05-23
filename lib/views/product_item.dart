@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projet_b3/model/product.dart';
 
-Widget productItem(context, Product item) {
+Widget productItem(context, Product item, addToCart, removeFromCart) {
 
   double _screenWidth = MediaQuery.of(context).size.width ;
 
@@ -51,6 +51,7 @@ Widget productItem(context, Product item) {
                   GestureDetector(
                     onTap: (() {
                       print("Should remove item");
+                      removeFromCart();
                       if (item.quantity > 0)
                         itemSetState(() => item.quantity--);
                     }),
@@ -66,6 +67,7 @@ Widget productItem(context, Product item) {
                   GestureDetector(
                     onTap: (() {
                       print("Should add item");
+                      addToCart(item);
                       itemSetState(() => item.quantity++) ;
                     }),
                     child: Image.asset("assets/add.png"),

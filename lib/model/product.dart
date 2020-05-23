@@ -1,7 +1,7 @@
 class Product {
 
   Product(String name, String description, double price, bool available,
-      {int quantity = 1}) {
+      {int quantity = 0}) {
     this.name = name ;
     this.description = description ;
     this.price = price ;
