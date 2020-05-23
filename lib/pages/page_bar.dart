@@ -65,13 +65,10 @@ class _PageBarState extends State<PageBar> {
         body: _offer(_bar),
       ),
       bottomSheet: InkWell(
-        onTap: (() {
-          // TODO
-          _goToCart();
-        }),
+        onTap: (_cartContent.isNotEmpty) ? () => _goToCart() : null,
         child: Container(
           width: _screenWidth,
-          color: Colors.deepOrange,
+          color: (_cartContent.isNotEmpty) ? Colors.deepOrange : Colors.grey,
           child: Padding(
             padding: EdgeInsets.all(20),
             child: Text(
@@ -194,13 +191,17 @@ class _PageBarState extends State<PageBar> {
   void    _addToCart(Product toAdd) {
     if (!_cartContent.contains(toAdd)) {
       toAdd.quantity = 1;
-      _cartContent.add(toAdd);
+      setState(() {
+        _cartContent.add(toAdd);
+      });
     }
   }
 
   void    _removeFromCart(Product toRemove) {
     if (toRemove.quantity <= 1) {
-      _cartContent.remove(toRemove);
+      setState(() {
+        _cartContent.remove(toRemove);
+      });
     }
   }
 
