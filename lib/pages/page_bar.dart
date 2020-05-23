@@ -93,12 +93,12 @@ class _PageBarState extends State<PageBar> {
         Row(
           children: <Widget>[
             Container(
-              width: _screenWidth / 4,
+              width: _screenWidth / 3,
               decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                      fit: BoxFit.fill,
-                      image: Image.network("https://s1.qwant.com/thumbr/0x380/3/9/60c4de7be57ee1b7d24d07dde941c3027588bc313699cba9ef9ef8fb6c7fda/1280px-Hard_Rock_Cafe_Logo.svg.png?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F2%2F2c%2FHard_Rock_Cafe_Logo.svg%2F1280px-Hard_Rock_Cafe_Logo.svg.png&q=0&b=1&p=0&a=1").image
+                    fit: BoxFit.fill,
+                    image: Image.network("https://s1.qwant.com/thumbr/0x380/3/9/60c4de7be57ee1b7d24d07dde941c3027588bc313699cba9ef9ef8fb6c7fda/1280px-Hard_Rock_Cafe_Logo.svg.png?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F2%2F2c%2FHard_Rock_Cafe_Logo.svg%2F1280px-Hard_Rock_Cafe_Logo.svg.png&q=0&b=1&p=0&a=1").image,
                   )
               ),
             ),
@@ -135,7 +135,7 @@ class _PageBarState extends State<PageBar> {
             ),
           ],
         ),
-        Row(
+        /*Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
             Column(
@@ -153,7 +153,7 @@ class _PageBarState extends State<PageBar> {
               ],
             )
           ],
-        ),
+        ),*/
         Padding(padding: EdgeInsets.all(20),),
         Center(
           child: Text(
@@ -168,16 +168,17 @@ class _PageBarState extends State<PageBar> {
         Flexible(
           fit: FlexFit.loose,
           child: CustomScrollView(
+            shrinkWrap: true,
             slivers: <Widget>[
               SliverList(
                 delegate: SliverChildBuilderDelegate((BuildContext context, int index) {
-                    return productItem(
+                  return productItem(
                       context,
                       _productsList[index],
                       addToCart: (item) => _addToCart(item),
                       removeFromCart: (item) => _removeFromCart(item)
-                    );
-                  },
+                  );
+                },
                   childCount: _productsList.length,
                 ),
               ),
