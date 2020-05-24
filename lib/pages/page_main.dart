@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:projet_b3/old_pages/page_bars.dart';
+import 'package:projet_b3/pages/page_bars.dart';
 import 'package:projet_b3/pages/page_favorites.dart';
 import 'package:projet_b3/pages/page_orders.dart';
 import 'package:projet_b3/pages/page_settings.dart';
@@ -48,7 +48,7 @@ class _MainPageState extends State<MainPage> {
     return BottomNavigationBarItem(
       icon: Image.asset(
         imagePath,
-        scale: 1.5,
+        scale: 1.1,
       ),
       title: Text(""),
     );
