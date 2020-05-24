@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projet_b3/model/bar.dart';
 import 'package:projet_b3/model/product.dart';
+import 'package:projet_b3/pages/page_cart.dart';
+import 'package:projet_b3/views/bar_header.dart';
 import 'package:projet_b3/views/product_item.dart';
 
 class PageBar extends StatefulWidget {
@@ -90,51 +92,7 @@ class _PageBarState extends State<PageBar> {
   Widget _offer(Bar bar) {
     return Column(
       children: <Widget>[
-        Row(
-          children: <Widget>[
-            Container(
-              width: _screenWidth / 3,
-              decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                    fit: BoxFit.fill,
-                    image: Image.network("https://s1.qwant.com/thumbr/0x380/3/9/60c4de7be57ee1b7d24d07dde941c3027588bc313699cba9ef9ef8fb6c7fda/1280px-Hard_Rock_Cafe_Logo.svg.png?u=https%3A%2F%2Fupload.wikimedia.org%2Fwikipedia%2Fcommons%2Fthumb%2F2%2F2c%2FHard_Rock_Cafe_Logo.svg%2F1280px-Hard_Rock_Cafe_Logo.svg.png&q=0&b=1&p=0&a=1").image,
-                  )
-              ),
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Text(
-                  bar.name.toUpperCase(),
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  "Bar category" + " - " + "Bar address",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                Text(
-                  "Opening hours" + " - " + "01.12.12.12.12",
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-                Text(
-                  "Happy Hour de 20h a 23h",
-                  style: TextStyle(
-                    color: Colors.deepOrange,
-                    fontWeight: FontWeight.bold,
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
+        barHeader(bar, _screenWidth),
         /*Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: <Widget>[
@@ -211,6 +169,11 @@ class _PageBarState extends State<PageBar> {
     _cartContent.forEach((element) {
       print("ELEMENT ${element.name} X ${element.quantity}");
     });
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => PageCart(cartContent: _cartContent, bar: widget.bar,),
+      ),
+    );
   }
 
 /*
